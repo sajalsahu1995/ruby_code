@@ -1,0 +1,31 @@
+def sum(numbers)
+  raise ArgumentError, "Argument should be an array with 2 elements" unless numbers.is_a?(Array) && numbers.size == 2
+  numbers[0] + numbers[1]
+end
+
+# Test cases
+def run_tests
+  test_cases = {
+    "Test 1: Positive integers" => [[4, 7], 11],
+    "Test 2: Negative integers" => [[-2, -8], -10],
+    "Test 3: Mix of positive and negative integers" => [[3, -6], -3],
+    "Test 4: Positive floating-point numbers" => [[2.5, 3.5], 6.0],
+    "Test 5: Negative floating-point numbers" => [[-1.2, -3.8], -5.0],
+    "Test 6: Mix of integers and floating-point numbers" => [[2, 3.5], 5.5],
+    "Test 7: Zeroes" => [[0, 0], 0],
+    "Test 8: Zero and a positive number" => [[0, 5], 5],
+    "Test 9: Zero and a negative number" => [[0, -5], -5]
+  }
+
+  test_cases.each do |key, (input, expected_output)|
+    actual_output = sum(input)
+    if actual_output == expected_output
+      puts "#{key} passed."
+    else
+      puts "#{key} failed: expected #{expected_output}, got #{actual_output}"
+    end
+  end
+end
+
+
+run_tests
