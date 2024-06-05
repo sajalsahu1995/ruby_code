@@ -1,0 +1,52 @@
+class Survey
+  attr_reader :questions, :runs, :overall_score
+
+  def initialize
+    @questions = [
+      "Do you like Math?",
+      "Is the water red?",
+      "Do you enjoy dancing?",
+      "Is air dry?",
+      "Do you like potato?"
+    ]
+    @runs = []
+    @overall_score = 0
+  end
+
+  def start
+    loop do
+      puts "\nStarting a new survey run..."
+      score = conduct_survey
+      puts "You scored #{score} out of #{questions.size} in this run."
+      @runs << score
+      calculate_overall_score
+      puts "Your overall score across all runs is #{overall_score}."
+      
+      print "Do you want to take the survey again? (yes/no): "
+      answer = gets.chomp.downcase
+      break unless answer == 'yes'
+    end
+    puts "Thank you for participating!"
+  end
+
+  private
+
+  def conduct_survey
+    score = 0
+    questions.each do |question|
+      print "#{question} (yes/no): "
+      answer = gets.chomp.downcase
+      score += 1 if answer == 'yes'
+    end
+    score
+  end
+
+  def calculate_overall_score
+    total_score = runs.reduce(0, :+)
+    @overall_score = total_score.to_f / runs.size
+  end
+end
+
+# Create a new survey instance and start the survey
+survey = Survey.new
+survey.start
