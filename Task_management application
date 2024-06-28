@@ -1,1 +1,42 @@
 
+class Task2
+	attr_accessor :title,description,:status
+
+	def initialize(name,description,status)
+		@name=name
+		@description=description
+		@status=status
+	end
+end
+class TaskManager2
+
+	def initialize
+		@task=[]
+	end
+
+	def create_tasks(title,desc,status='To do')
+		task=Task2.new(title,desc,status)
+		@task << task
+		task
+	end
+
+	def index
+		puts @task.inspect
+	end
+
+	def updating_task(task,title=nil,description=nil,status='To do')
+		task.title =title
+		task.description =description
+		task.status =status
+		task
+	end
+
+	def deleting_task(task)
+		@task.delete(task)
+	end
+
+	def filtering(filter)
+		@task = @task.select{|x| x.status=="#{filter}"}
+		puts @task
+	end
+end
