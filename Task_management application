@@ -2,7 +2,7 @@
 class Task2
 	attr_accessor :title,description,:status
 	validates :title, :presence=>true
-	validates :status, inclusion: %w(Done ToDo InProgress)
+	validates :status, inclusion: %w(Done To\ Do In\ Progress)
 
 	def initialize(name,description,status)
 		@name=name
